@@ -102,6 +102,54 @@ flutter run -d macos
 flutter run -d ohos
 ```
 
+## 📱 安装包下载
+
+### Android 安装包
+- **APK文件**：[下载 app-release.apk](release/app-release.apk)
+- **安装方式**：
+  ```bash
+  # 通过ADB安装
+  adb install release/app-release.apk
+  
+  # 或直接在Android设备上点击APK文件安装
+  ```
+
+### HarmonyOS 安装包
+- **HAP文件**：[下载 entry-default-signed.hap](release/entry-default-signed.hap)
+- **安装方式**：
+  ```bash
+  # 使用hdc工具安装（推荐）
+  hdc install release/entry-default-signed.hap
+  
+  # 确保设备已连接并开启调试模式
+  hdc list targets  # 查看连接的设备
+  ```
+
+### 📋 安装要求
+
+#### Android
+- **系统版本**：Android 5.0 (API 21) 或更高版本
+- **存储空间**：至少100MB可用空间
+- **权限要求**：
+  - 存储权限（用于保存项目）
+  - 网络权限（可选，用于未来功能）
+
+#### HarmonyOS
+- **系统版本**：HarmonyOS 2.0 或更高版本
+- **设备类型**：支持手机、平板、折叠屏设备
+- **存储空间**：至少100MB可用空间
+- **开发工具**：
+  - 需要安装DevEco Studio
+  - 配置hdc工具环境变量
+
+### ?? 快速体验
+
+1. **下载对应平台的安装包**
+2. **按照上述安装说明进行安装**
+3. **启动应用，开始创作你的积木世界！**
+
+> 💡 **提示**：HarmonyOS设备需要在设置中开启"开发者模式"和"USB调试"才能使用hdc工具安装应用。
+
 ## ✨ 功能特性
 
 ### 🎨 核心创作功能
