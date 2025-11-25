@@ -1,4 +1,8 @@
+<div align="center">
+
 # 积木搭建启蒙
+
+</div>
 
 <div align="center">
 
@@ -113,7 +117,7 @@ flutter run -d ohos
   hdc list targets  # 查看连接的设备
   ```
 
-### ?? 安装要求
+### 📋 安装要求
 
 #### Android
 - **系统版本**：Android 5.0 (API 21) 或更高版本
@@ -149,7 +153,7 @@ flutter run -d ohos
 - **撤销重做**：完整的历史记录管理
 - **长按拖拽**：支持已有积木的重新定位
 
-### 📁 项目管理
+### ?? 项目管理
 
 #### 本地存储
 - **项目保存**：基于文件系统的JSON格式存储
@@ -209,7 +213,7 @@ app/
 - **移动端**：Android、iOS、HarmonyOS
 - **桌面端**：Windows、macOS
 
-## 📊 数据模型
+## ?? 数据模型
 
 ### 积木数据模型
 
@@ -347,17 +351,9 @@ dependencies:
 - 确保所有测试通过
 - 更新相关文档
 
-## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
-## 📞 联系方式
 
-- 项目地址: [GitHub Repository]
-- 问题反馈: [Issues Page]
-- 开发团队: Comate Team
-
----
 
 **让每个孩子都能成为小小建筑师！** 🏗️🎨
 
