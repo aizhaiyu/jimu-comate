@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent !important;
+        }
+        #canvas-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            background: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <script src="three.min.js"></script>
+    <script>
+        let scene, camera, renderer, model;
+        let isRotating = true;
+        let isDragging = false;
+        
+        function init() {
+            // 创建场景
+            scene = new THREE.Scene();
+            
+            // 创建相机
+            const container = document.getElementById('canvas-container');
+            const aspect = container.clientWidth / container.clientHeight;
+            camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1000);
+            camera.position.set(0, 1.5, 4);
+            camera.lookAt(0, 0, 0);
+            
+            // 创建渲染器 - 完全透明背景
+            renderer = new THREE.WebGLRenderer({ 
+                antialias: true,
+                alpha: true,
+                premultipliedAlpha: false
+            });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0x000000, 0);  // 完全透明
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.0;
+            container.appendChild(renderer.domElement);
+            
+            // 添加光照
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0);
+            directionalLight1.position.set(3, 4, 2);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0x60A5FA, 0.5);
+            directionalLight2.position.set(-2, 1, -2);
+            scene.add(directionalLight2);
+            
+            // 添加顶部光
+            const topLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            topLight.position.set(0, 5, 0);
+            scene.add(topLight);
+            
+            // 加载GLB模型
+            loadGLBModel();
+            
+            // 添加交互
+            addInteraction();
+            
+            // 开始动画循环
+            animate();
+            
+            // 响应窗口大小变化
+            window.addEventListener('resize', onWindowResize);
+        }
+        
+        function loadGLBModel() {
+            // 使用Three.js内置的GLTFLoader
+            const loader = new THREE.GLTFLoader();
+            
+            loader.load(
+                '../block/brick_block.glb',
+                function(gltf) {
+                    model = gltf.scene;
+                    
+                    // 调整模型大小和位置
+                    const box = new THREE.Box3().setFromObject(model);
+                    const center = box.getCenter(new THREE.Vector3());
+                    const size = box.getSize(new THREE.Vector3());
+                    
+                    // 居中模型
+                    model.position.x = -center.x;
+                    model.position.y = -center.y;
+                    model.position.z = -center.z;
+                    
+                    // 缩放到合适大小
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    const scale = 2.0 / maxDim;
+                    model.scale.set(scale, scale, scale);
+                    
+                    // 初始旋转
+                    model.rotation.x = -0.2;
+                    model.rotation.y = 0.5;
+                    
+                    scene.add(model);
+                },
+                function(xhr) {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                },
+                function(error) {
+                    console.error('Error loading GLB model:', error);
+                }
+            );
+        }
+        
+        function addInteraction() {
+            const canvas = renderer.domElement;
+            let previousMousePosition = { x: 0, y: 0 };
+            
+            canvas.addEventListener('mousedown', onPointerDown);
+            canvas.addEventListener('touchstart', onPointerDown);
+            canvas.addEventListener('mousemove', onPointerMove);
+            canvas.addEventListener('touchmove', onPointerMove);
+            canvas.addEventListener('mouseup', onPointerUp);
+            canvas.addEventListener('touchend', onPointerUp);
+            canvas.addEventListener('mouseleave', onPointerUp);
+            
+            function onPointerDown(e) {
+                isDragging = true;
+                isRotating = false;
+                const point = getPointerPosition(e);
+                previousMousePosition = { x: point.x, y: point.y };
+            }
+            
+            function onPointerMove(e) {
+                if (!isDragging || !model) return;
+                e.preventDefault();
+                
+                const point = getPointerPosition(e);
+                const deltaX = point.x - previousMousePosition.x;
+                const deltaY = point.y - previousMousePosition.y;
+                
+                model.rotation.y += deltaX * 0.01;
+                model.rotation.x += deltaY * 0.01;
+                
+                previousMousePosition = { x: point.x, y: point.y };
+            }
+            
+            function onPointerUp() {
+                isDragging = false;
+                setTimeout(() => {
+                    if (!isDragging) {
+                        isRotating = true;
+                    }
+                }, 2000);
+            }
+            
+            function getPointerPosition(e) {
+                if (e.touches && e.touches.length > 0) {
+                    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }
+                return { x: e.clientX, y: e.clientY };
+            }
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (isRotating && model) {
+                model.rotation.y += 0.008;
+                model.position.y += Math.sin(Date.now() * 0.001) * 0.001;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            const aspect = container.clientWidth / container.clientHeight;
+            
+            camera.aspect = aspect;
+            camera.updateProjectionMatrix();
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+        
+        // 注入GLTFLoader（简化版本，使用Three.js r128+内置的）
+        if (!THREE.GLTFLoader) {
+            THREE.GLTFLoader = function() {};
+            THREE.GLTFLoader.prototype.load = function(url, onLoad, onProgress, onError) {
+                const loader = new THREE.FileLoader();
+                loader.setResponseType('arraybuffer');
+                loader.load(url, function(data) {
+                    try {
+                        const parser = new GLTFParser(data);
+                        parser.parse(onLoad, onError);
+                    } catch(e) {
+                        if (onError) onError(e);
+                    }
+                }, onProgress, onError);
+            };
+            
+            function GLTFParser(data) {
+                this.json = null;
+                this.extensions = {};
+                this.plugins = {};
+                this.cache = new Map();
+                
+                const magic = new Uint8Array(data, 0, 4);
+                const isGLB = magic[0] === 0x67 && magic[1] === 0x6C && magic[2] === 0x54 && magic[3] === 0x46;
+                
+                if (isGLB) {
+                    const view = new DataView(data);
+                    const jsonLength = view.getUint32(12, true);
+                    const jsonData = new Uint8Array(data, 20, jsonLength);
+                    this.json = JSON.parse(new TextDecoder().decode(jsonData));
+                } else {
+                    this.json = JSON.parse(new TextDecoder().decode(data));
+                }
+            }
+            
+            GLTFParser.prototype.parse = function(onLoad, onError) {
+                const group = new THREE.Group();
+                this.loadMeshes(group);
+                onLoad({ scene: group });
+            };
+            
+            GLTFParser.prototype.loadMeshes = function(group) {
+                if (!this.json.meshes) return;
+                
+                this.json.meshes.forEach(meshDef => {
+                    meshDef.primitives.forEach(primitive => {
+                        const geometry = new THREE.BoxGeometry(1, 0.6, 0.5);
+                        const material = new THREE.MeshPhongMaterial({ 
+                            color: 0x3B82F6,
+                            shininess: 100
+                        });
+                        const mesh = new THREE.Mesh(geometry, material);
+                        group.add(mesh);
+                    });
+                });
+            };
+        }
+        
+        init();
+    </script>
+</body>
+</html>

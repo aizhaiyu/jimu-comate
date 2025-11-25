@@ -1,0 +1,65 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/wolfman/.ohos/config/default_ohos_xIt5PrPyADkfwLGFY3cUOl7sAC-Id6r9AhDUj77RP0U=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B09524A4322D4A8536B1802B5F1DB82E022BC4602749DB09031DE83799C9BF2FF6FA9708890BDFB",
+          "profile": "/Users/wolfman/.ohos/config/default_ohos_xIt5PrPyADkfwLGFY3cUOl7sAC-Id6r9AhDUj77RP0U=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/wolfman/.ohos/config/default_ohos_xIt5PrPyADkfwLGFY3cUOl7sAC-Id6r9AhDUj77RP0U=.p12",
+          "storePassword": "0000001BEAFF68B9F6C666E197F6C3D662F0A0F5992E9D682B4FF608F26F26A981F90D264C4F665ABF0025"
+        }
+      },
+      {
+        "name": "release",
+        "type": "HarmonyOS",
+        "material": {
+          "storeFile": "/Users/wolfman/Documents/code/item/dream/app/ohos/key/key.p12",
+          "storePassword": "00000020C58772E3EAECEDDDD50C96E784F4C4969062A650D52C21EE121B75F60C52033DE541537262BBA9B3E5382CD7",
+          "keyAlias": "key",
+          "keyPassword": "000000206FCB5671B30545DD232EF7A7C7F9ECA017850E910B3849562CF9E78C213E5AE8FDB2926412E488705606441B",
+          "signAlg": "SHA256withECDSA",
+          "profile": "/Users/wolfman/Documents/code/item/LEGO/app/key/jimuRelease.p7b",
+          "certpath": "/Users/wolfman/Documents/code/item/dream/app/ohos/key/dream_releases.cer"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "release",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "profile"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
