@@ -36,7 +36,7 @@
 
 - Flutter SDK: 3.22.1-ohos-1.0.6 (鸿蒙定制版本)
 - Dart SDK: 3.4.0
-- 开发环境: Android Studio / VS Code
+- 开发环境: Android Studio / Baidu Comate
 
 ### 安装步骤
 
