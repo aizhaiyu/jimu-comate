@@ -7,7 +7,7 @@
 <div align="center">
 
 ![LEGO Studio](https://img.shields.io/badge/LEGO_Studio-v1.0.0-ff6b35)
-![Flutter](https://img.shields.io/badge/Flutter-3.22.1-ohos-02569B?logo=flutter)
+![Flutter](https://img.shields.io/badge/Flutter-3.22-blue?logo=flutter)
 ![Three.js](https://img.shields.io/badge/Three.js-r128-000000?logo=three.js)
 ![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20HarmonyOS%20%7C%20Windows%20%7C%20macOS-lightgrey)
 
