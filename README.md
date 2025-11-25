@@ -95,7 +95,7 @@ flutter run -d ohos
 
 ### 🤖 AI开发支持
 
-本项目采用 **Comate Team AI** 智能开发助手进行开发，具备以下强大能力：
+本项目采用 **Baidu Comate**  文心快码进行开发，具备以下强大能力：
 
 #### 🎯 核心AI功能
 - **智能代码生成**：基于需求自动生成高质量Flutter代码
@@ -105,7 +105,6 @@ flutter run -d ohos
 - **跨平台适配**：智能处理多平台兼容性问题
 
 #### 🛠️ 开发效率提升
-- **实时协作**：24/7在线AI助手，随时响应开发需求
 - **代码审查**：自动进行代码质量检查和优化建议
 - **文档生成**：智能生成项目文档和API说明
 - **测试用例**：自动生成单元测试和集成测试
@@ -126,9 +125,9 @@ flutter run -d ohos
     <td><img src="release/res/4.png" alt="多平台适配自动化" width="280"></td>
   </tr>
   <tr>
-    <td align="center">Comate AI智能体工作界面</td>
+    <td align="center">Comate 工作界面</td>
     <td align="center">AI代码生成过程</td>
-    <td align="center">智能调试与优化</td>
+    <td align="center">自动调试与优化</td>
     <td align="center">多平台适配自动化</td>
   </tr>
 </table>
