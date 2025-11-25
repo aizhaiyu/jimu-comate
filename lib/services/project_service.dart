@@ -4,12 +4,15 @@ import 'package:path_provider/path_provider.dart';
 import 'package:app/models/project_models.dart';
 import 'package:app/models/lego_models.dart' as lego_models;
 
+/// 项目管理服务类
+/// 负责处理积木项目的增删改查、导入导出等操作
 class ProjectService {
   static const String _projectsFolder = 'lego_projects';
   static const String _projectFileExtension = '.json';
   
   late Directory _projectsDir;
   
+  /// 初始化服务，创建项目存储目录
   Future<void> init() async {
     final appDir = await getApplicationDocumentsDirectory();
     _projectsDir = Directory('${appDir.path}/$_projectsFolder');
@@ -19,6 +22,7 @@ class ProjectService {
     }
   }
   
+  /// 获取所有项目列表，按更新时间降序排列
   Future<List<ProjectData>> getAllProjects() async {
     try {
       final files = await _projectsDir.list().where(
@@ -48,6 +52,7 @@ class ProjectService {
     }
   }
   
+  /// 根据ID获取单个项目
   Future<ProjectData?> getProjectById(String id) async {
     try {
       final file = File('${_projectsDir.path}/$id$_projectFileExtension');
@@ -64,6 +69,7 @@ class ProjectService {
     }
   }
   
+  /// 保存项目到本地文件
   Future<bool> saveProject(ProjectData project) async {
     try {
       final file = File('${_projectsDir.path}/${project.id}$_projectFileExtension');
@@ -78,6 +84,7 @@ class ProjectService {
     }
   }
   
+  /// 删除指定项目
   Future<bool> deleteProject(String id) async {
     try {
       final file = File('${_projectsDir.path}/$id$_projectFileExtension');
@@ -92,6 +99,7 @@ class ProjectService {
     }
   }
   
+  /// 更新项目信息
   Future<bool> updateProject(String id, {
     String? name,
     String? description,
@@ -120,6 +128,7 @@ class ProjectService {
     }
   }
   
+  /// 导出项目为JSON文件
   Future<bool> exportProjectAsJson(String id, String exportPath) async {
     try {
       final project = await getProjectById(id);
@@ -139,6 +148,7 @@ class ProjectService {
     }
   }
   
+  /// 从JSON文件导入项目
   Future<ProjectData?> importProjectFromJson(String filePath) async {
     try {
       final file = File(filePath);
@@ -169,6 +179,7 @@ class ProjectService {
     }
   }
   
+  /// 获取项目总数
   Future<int> getProjectsCount() async {
     try {
       final files = await _projectsDir.list().where(

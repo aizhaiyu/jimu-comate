@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:app/models/lego_models.dart';
 
+/// 积木保存服务类
+/// 负责处理积木数据的保存、加载、文件管理等操作
 class SaveService {
   /// 保存积木数据为JSON文件
   static Future<String> saveBricksToJson(List<BrickData> bricks, {String? fileName}) async {

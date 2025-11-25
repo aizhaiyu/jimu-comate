@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 新手教学覆盖层 - 提供交互式的使用指导
 class TutorialOverlay extends StatefulWidget {
   final VoidCallback onComplete;
   final VoidCallback onSkip;

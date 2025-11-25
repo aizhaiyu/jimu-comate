@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:app/models/lego_models.dart';
 
+/// 积木搭建状态数据模型
 class LegoState {
   final List<BrickData> bricks;
   final String selectedColor;
@@ -69,6 +70,7 @@ class LegoState {
   }
 }
 
+/// 积木搭建状态管理器
 class LegoNotifier extends StateNotifier<LegoState> {
   LegoNotifier() : super(const LegoState());
 

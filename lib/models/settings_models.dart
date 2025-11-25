@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/lego_models.dart';
 
+/// 应用主题模式枚举
 enum AppThemeMode { system, light, dark }
 
+/// 应用设置数据模型
 class SettingsData {
   final ThemeMode themeMode;
   final double autoSaveInterval; // 自动保存间隔（分钟）

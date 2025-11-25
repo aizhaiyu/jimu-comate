@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 动画按钮组件 - 带有动画效果的交互按钮
 class AnimatedButton extends StatefulWidget {
   final Widget child;
   final VoidCallback onPressed;

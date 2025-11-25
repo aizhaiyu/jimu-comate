@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:app/models/settings_models.dart';
 import 'package:app/models/lego_models.dart';
 
+/// 应用设置状态管理器
 class SettingsNotifier extends StateNotifier<SettingsData> {
   SettingsNotifier() : super(const SettingsData()) {
     _loadSettings();

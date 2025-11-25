@@ -1,5 +1,6 @@
 import 'package:app/models/lego_models.dart';
 
+/// 积木应用常量定义
 class LegoConstants {
   static const double brickUnit = 1.0; // Base size of 1 stud width
   static const double brickHeight = 1.2; // Height of a standard brick relative to width

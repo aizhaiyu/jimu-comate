@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:app/models/lego_models.dart';
 
+/// 积木工作区 - 3D积木搭建的主要交互区域
 class LegoWorkspace extends StatefulWidget {
   final List<BrickData> bricks;
   final ToolMode toolMode;

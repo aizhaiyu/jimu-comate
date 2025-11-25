@@ -10,6 +10,7 @@ import 'package:app/widgets/lego_controls.dart';
 import 'package:app/widgets/tutorial_overlay.dart';
 import 'package:app/services/project_service.dart';
 
+/// 积木工作室页面 - 主要的积木搭建界面
 class LegoStudioPage extends ConsumerStatefulWidget {
   final ProjectData? initialProject;
   final bool isTutorialMode;

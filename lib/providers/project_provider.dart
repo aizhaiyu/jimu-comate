@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 // 鸿蒙平台文件选择器
 import 'package:file_picker_ohos/file_picker_ohos.dart' as ohos_picker;
 
+/// 项目管理状态数据模型
 class ProjectState {
   final List<ProjectData> projects;
   final ProjectSortMode sortMode;
@@ -73,6 +74,7 @@ class ProjectState {
   }
 }
 
+/// 项目管理状态管理器
 class ProjectNotifier extends StateNotifier<ProjectState> {
   final ProjectService _projectService = ProjectService();
   

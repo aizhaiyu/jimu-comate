@@ -6,6 +6,7 @@ import 'package:app/models/project_models.dart';
 import 'package:app/pages/lego_studio_page.dart';
 import 'package:intl/intl.dart';
 
+/// 我的作品页面 - 管理和展示用户的积木作品
 class MyWorksPage extends ConsumerStatefulWidget {
   const MyWorksPage({super.key});
 
@@ -13,6 +14,7 @@ class MyWorksPage extends ConsumerStatefulWidget {
   ConsumerState<MyWorksPage> createState() => _MyWorksPageState();
 }
 
+/// 我的作品页面状态
 class _MyWorksPageState extends ConsumerState<MyWorksPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;

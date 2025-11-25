@@ -5,6 +5,7 @@ import 'package:app/providers/settings_provider.dart';
 import 'package:app/models/settings_models.dart';
 import 'package:app/constants/lego_constants.dart';
 
+/// 设置页面 - 管理应用的各种配置选项
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
@@ -12,6 +13,7 @@ class SettingsPage extends ConsumerStatefulWidget {
   ConsumerState<SettingsPage> createState() => _SettingsPageState();
 }
 
+/// 设置页面状态
 class _SettingsPageState extends ConsumerState<SettingsPage>
     with TickerProviderStateMixin {
   late AnimationController _controller;
