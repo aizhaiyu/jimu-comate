@@ -79,8 +79,9 @@ flutter run -d ohos
 </p>
 
 <p align="center">
-  <strong>积木搭建界面</strong> - 直观的3D创作体验 &nbsp;&nbsp;|&nbsp;&nbsp; 
   <strong>应用首页</strong> - 简洁友好的用户界面
+   &nbsp;&nbsp;|&nbsp;&nbsp; 
+  <strong>积木搭建界面</strong> - 直观的3D创作体验
 </p>
 
 ### 鸿蒙桌面端
